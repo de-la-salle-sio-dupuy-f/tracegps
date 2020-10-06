@@ -1,3 +1,3 @@
 <?php
-// création du fichier 
+// création du fichier potos
 ?>
