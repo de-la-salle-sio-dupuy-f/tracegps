@@ -500,6 +500,25 @@ class DAO
     }
     
     
+    public function creerUneAutorisation($idAutorisant,$idAutorise) {
+        
+        
+        // préparation de la requête
+        $txt_req = "insert into tracegps_autorisations (idAutorisant,idAutorise)";
+        $txt_req .= " values (:idAutorisant,:idAutorise)";
+        $req = $this->cnx->prepare($txt_req);
+        // liaison de la requête et de ses paramètres
+        
+        $req->bindValue("idAutorisant", $idAutorisant, PDO::PARAM_STR);
+        $req->bindValue("idAutorise", $idAutorise, PDO::PARAM_STR);
+        
+        // exécution de la requête
+        $ok = $req->execute();
+
+        return $ok;
+    }
+    
+    
     
     
    
