@@ -3,7 +3,7 @@
 // fichier : modele/DAO.class.php   (DAO : Data Access Object)
 // Rôle : fournit des méthodes d'accès à la bdd tracegps (projet TraceGPS) au moyen de l'objet PDO
 // modifié par Jim le 12/8/2018
-
+ 
 // liste des méthodes déjà développées (dans l'ordre d'apparition dans le fichier) :
 
 // __construct() : le constructeur crée la connexion $cnx à la base de données
