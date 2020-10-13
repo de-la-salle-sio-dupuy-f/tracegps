@@ -730,7 +730,11 @@ class DAO
             $uneTrace = new Trace($unId, $uneDateHeureDebut, $uneDateHeureFin, $terminee, $unIdUtilisateur);
             // ajout des points avec la méthode getLesPointsDeTrace
             
+            $lesPoints = $this->getLesPointsDeTrace($id);
             
+            foreach($lesPoints as $nouveauPoint){
+                $uneTrace->ajouterPoint($nouveauPoint);
+            }
             
             
             
