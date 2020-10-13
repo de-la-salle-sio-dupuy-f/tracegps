@@ -477,6 +477,28 @@ class DAO
         }
     }
     
+    public function autoriseAConsulter($idAutorisant,$idAutorise) {
+        // préparation de la requête de recherche
+        $txt_req = "Select count(*) from tracegps_autorisations where idAutorisant = :idAutorisant AND idAutorise = :idAutorise ";
+        $req = $this->cnx->prepare($txt_req);
+        // liaison de la requête et de ses paramètres
+        $req->bindValue("idAutorise", $idAutorise, PDO::PARAM_STR);
+        $req->bindValue("idAutorisant", $idAutorisant, PDO::PARAM_STR);
+        // exécution de la requête
+        $req->execute();
+        $nbReponses = $req->fetchColumn(0);
+        // libère les ressources du jeu de données
+        $req->closeCursor();
+        
+        // fourniture de la réponse
+        if ($nbReponses == 0) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+    
     
     
     
