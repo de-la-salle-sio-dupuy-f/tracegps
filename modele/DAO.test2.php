@@ -30,6 +30,7 @@
 include_once ('DAO.class.php');
 $dao = new DAO();
 
+/*
 // test de la méthode getLesPointsDeTrace ---------------------------------------------------------
 // modifié par Jim le 13/8/2018
 echo "<h3>Test de getLesPointsDeTrace : </h3>";
@@ -39,9 +40,9 @@ echo "<p>Nombre de points de la trace 1 : " . $nbPoints . "</p>";
 // affichage des points
 foreach ($lesPoints as $unPoint)
 {   echo ($unPoint->toString());
-echo ('<br>');
+    echo ('<br>');
 }
-
+*/
 
 // test de la méthode creerUnPointDeTrace ---------------------------------------------------------
 // modifié par Jim le 13/8/2018

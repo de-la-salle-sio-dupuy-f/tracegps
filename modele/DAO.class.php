@@ -656,30 +656,43 @@ class DAO
         return $lesPointsDeTrace;
     }
     
-//     public function creerUnPointDeTrace($unPointDeTrace)    
-//     {
-//         //on teste si le point existe déjà
-//         if($this->existeUnPointDeTrace($unPointDeTrace->getId())) return false;
+    public function creerUnPointDeTrace($unPointDeTrace)    
+    {
+        $idTrace = $unPointDeTrace->getId();
+        if($this->getLesPointsDeTrace($idTrace) == 1)
+        {
+            $txt_req = "update tracegps_traces set dateDebut = :dateDebut where idTrace = :idTrace ";
+            
+            $req = $this->cnx->prepare($txt_req);
+            
+            $req->bindValue("dateDebut", utf8_decode($unPointDeTrace->getDateHeure()), PDO::PARAM_INT);
+            $req->bindValue("idTrace", utf8_decode($unPointDeTrace->getIdTrace()), PDO::PARAM_INT);
+            
+            $ok = $req->execute();
+            // sortir en cas d'échec
+            if ( ! $ok) { return false; }
+            return true;
+        }
+        
+        //préparation de la requête
+        $txt_req1 = "insert into tracegps_points(idTrace, id, latitude, longitude, altitude, dateHeure, rythmeCardio)";
+        $txt_req1 .= " values (:idTrace, :id, :latitude, :longitude, :altitude, :dateHeure, :rythmeCardio)";
+        $req1 = $this->cnx->prepare($txt_req1);
+        //liaison de la requête et de ses paramètres
+        $req1->bindValue("idTrace", utf8_decode($unPointDeTrace->getIdTrace()), PDO::PARAM_INT);
+        $req1->bindValue("id", utf8_decode($unPointDeTrace->getId()), PDO::PARAM_INT);
+        $req1->bindValue("latitude", utf8_decode($unPointDeTrace->getLatitude()), PDO::PARAM_STR);
+        $req1->bindValue("longitude", utf8_decode($unPointDeTrace->getLongitude()), PDO::PARAM_STR);
+        $req1->bindValue("altitude", utf8_decode($unPointDeTrace->getAltitude()), PDO::PARAM_STR);
+        $req1->bindValue("dateHeure", utf8_decode($unPointDeTrace->getDateHeure()), PDO::PARAM_STR);
+        $req1->bindValue("rythmeCardio", utf8_decode($unPointDeTrace->getRythmeCardio()), PDO::PARAM_INT);
+        // exécution de la requête
+        $ok1 = $req1->execute();
+        // sortir en cas d'échec
+        if ( ! $ok1) { return false; }
+        return true;
     
-//         //préparation de la requête
-//         $txt_req1 = "insert into tracegps_points(idTrace, id, latitude, longitude, altitude, dateHeure, rythmeCardio)";
-//         $txt_req1 = "values (:idTrace, :id, :latitude, :longitude, :altitude, :dateHeure, :ruthmeCardio)";
-//         $req1 = $this->cnx->prepare($txt_req1);
-//         //liaison de la requête et de ses paramètres
-//         $req1->bindValue("idTrace", utf8_decode($unPointDeTrace->getIdTrace()), PDO::PARAM_INT);
-//         $req1->bindValue("id", utf8_decode($unPointDeTrace->getId()), PDO::PARAM_INT);
-//         $req1->bindValue("latitude", utf8_decode($unPointDeTrace->getLatitude()), PDO::PARAM_STR);
-//         $req1->bindValue("longitude", utf8_decode($unPointDeTrace->getLongitude()), PDO::PARAM_STR);
-//         $req1->bindValue("altitude", utf8_decode($unPointDeTrace->getAltitude()), PDO::PARAM_STR);
-//         $req1->bindValue("dateHeure", utf8_decode($unPointDeTrace->getDateHeure()), PDO::PARAM_STR);
-//         $req1->bindValue("rythmeCardio", utf8_decode($unPointDeTrace->getRythmeCardio()), PDO::PARAM_INT);
-//         // exécution de la requête
-//         $ok = $req1->execute();
-//         // sortir en cas d'échec
-//         if ( ! $ok) { return false; }
-//      return true;
-    
-//     }
+    }
      
     
     
@@ -706,91 +719,6 @@ class DAO
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-   
     
     
     
