@@ -371,7 +371,57 @@ class DAO
         }
     }
     
-    
+    // Fonction fournissant la collection des utilisateurs(de niveau 1) autorisant l'utilisateur $idAutorise à voir leurs parcours
+    public function getLesUtilisateursAutorisant($idUtilisateur) {
+        // préparation de la requête de recherche
+        $txt_req = "Select distinct id, pseudo, mdpSha1, adrMail, numTel, niveau, dateCreation, nbTraces, dateDerniereTrace";
+        $txt_req .= " FROM tracegps_vue_utilisateurs INNER JOIN tracegps_autorisations";
+        $txt_req .= " ON id = idAutorisant";
+        $txt_req .= " where idAutorisant IN ( SELECT idAutorisant FROM tracegps_autorisations WHERE idAutorise = :idAutorise)";
+        $txt_req .= " order by id";
+        $req = $this->cnx->prepare($txt_req);
+        // liaison de la requête et de ses paramètres
+        $req->bindValue("idAutorise", $idUtilisateur, PDO::PARAM_STR);
+        // extraction des données
+        $req->execute();
+        $uneLigne = $req->fetch(PDO::FETCH_OBJ);
+        
+        $lesUtilisateurs = array();
+        // libère les ressources du jeu de données
+        
+        
+        
+        // traitement de la réponse
+        if ( ! $uneLigne) {
+            return null;
+        }
+        else {
+            while ($uneLigne) {
+            // création d'un objet Utilisateur
+                $unId = utf8_encode($uneLigne->id);
+                $unPseudo = utf8_encode($uneLigne->pseudo);
+                $unMdpSha1 = utf8_encode($uneLigne->mdpSha1);
+                $uneAdrMail = utf8_encode($uneLigne->adrMail);
+                $unNumTel = utf8_encode($uneLigne->numTel);
+                $unNiveau = utf8_encode($uneLigne->niveau);
+                $uneDateCreation = utf8_encode($uneLigne->dateCreation);
+                $unNbTraces = utf8_encode($uneLigne->nbTraces);
+                $uneDateDerniereTrace = utf8_encode($uneLigne->dateDerniereTrace);
+            
+            $unUtilisateur = new Utilisateur($unId, $unPseudo, $unMdpSha1, $uneAdrMail, $unNumTel, $unNiveau, $uneDateCreation, $unNbTraces, $uneDateDerniereTrace);
+            
+            
+            $lesUtilisateurs[] = $unUtilisateur;
+            
+            $uneLigne = $req->fetch(PDO::FETCH_OBJ);
+            }
+            
+            $req->closeCursor();
+            
+            return $lesUtilisateurs;
+            
+        }
+    }
     
     
     
