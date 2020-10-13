@@ -31,15 +31,39 @@ include_once ('DAO.class.php');
 $dao = new DAO();
 
 
-// test de la méthode xxxxxxxxxxxxxxxxxxxxxxxxxxx ----------------------------------------------------------
-// modifié par xxxxxxxxxxxxxxxxx le xxxxxxxxxx
-echo "<h3>Test de xxxxxxxxxxxxxxxxx : </h3>";
-// A CONTINUER .........
+
+// // test de la méthode getLesUtilisateursAutorises -------------------------------------------------
+// // modifié par Vicnent G le 13/10/2020 
+// echo "<h3>Test de getLesUtilisateursAutorises(idUtilisateur) : </h3>";
+// $lesUtilisateurs = $dao->getLesUtilisateursAutorises(2);
+// $nbReponses = sizeof($lesUtilisateurs);
+// echo "<p>Nombre d'utilisateurs autorisés par l'utilisateur 2 : " . $nbReponses . "</p>";
+// // affichage des utilisateurs
+// foreach ($lesUtilisateurs as $unUtilisateur)
+// {	echo ($unUtilisateur->toString());
+// echo ('<br>');
+// }
+
+
+// // test de la méthode autoriseAConsulter ----------------------------------------------------------
+// // modifié par Jim le 13/8/2018
+// echo "<h3>Test de autoriseAConsulter : </h3>";
+// if ($dao->autoriseAConsulter(2, 3)) $autorise = "oui"; else $autorise = "non";
+// echo "<p>L'utilisateur 2 autorise l'utilisateur 3 : <b>" . $autorise . "</b><br>";
+
+// if ($dao->autoriseAConsulter(3, 2)) $autorise = "oui"; else $autorise = "non";
+// echo "<p>L'utilisateur 3 autorise l'utilisateur 2 : <b>" . $autorise . "</b><br>";
 
 
 
-
-
+// test de la méthode creerUneAutorisation ---------------------------------------------------------
+// modifié par Jim le 13/8/2018
+echo "<h3>Test de creerUneAutorisation : </h3>";
+if ($dao->creerUneAutorisation(2, 1)) $ok = "oui"; else $ok = "non";
+echo "<p>La création de l'autorisation de l'utilisateur 2 vers l'utilisateur 1 a réussi : <b>" . $ok . "</b><br>";
+// la même autorisation ne peut pas être enregistrée 2 fois
+if ($dao->creerUneAutorisation(2, 1)) $ok = "oui"; else $ok = "non";
+echo "<p>La création de l'autorisation de l'utilisateur 2 vers l'utilisateur 1 a réussi : <b>" . $ok . "</b><br>";
 
 
 
