@@ -344,7 +344,7 @@ class DAO
     
     
     // --------------------------------------------------------------------------------------
-    // début de la zone attribuée au développeur 1 (xxxxxxxxxxxxxxxxxxxx) : lignes 350 à 549
+    // début de la zone attribuée au développeur 1 (Vincent) : lignes 350 à 549
     // --------------------------------------------------------------------------------------
     
 
@@ -544,7 +544,7 @@ class DAO
     
     
     // --------------------------------------------------------------------------------------
-    // début de la zone attribuée au développeur 2 (xxxxxxxxxxxxxxxxxxxx) : lignes 550 à 749
+    // début de la zone attribuée au développeur 2 (Brice) : lignes 550 à 749
     // --------------------------------------------------------------------------------------
     
 
@@ -744,7 +744,7 @@ class DAO
     
     
     // --------------------------------------------------------------------------------------
-    // début de la zone attribuée au développeur 3 (xxxxxxxxxxxxxxxxxxxx) : lignes 750 à 949
+    // début de la zone attribuée au développeur 3 (Fabien) : lignes 750 à 949
     // --------------------------------------------------------------------------------------
     
     

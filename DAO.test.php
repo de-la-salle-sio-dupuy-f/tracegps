@@ -19,7 +19,7 @@ include_once ('DAO.class.php');
 //include_once ('_DAO.mysql.class.php');
 $dao = new DAO();
 
-/*
+
 // test de la méthode getNiveauConnexion ----------------------------------------------------------
 // modifié par Jim le 12/8/2018
 echo "<h3>Test de getNiveauConnexion : </h3>";
@@ -34,7 +34,7 @@ echo "<p>Niveau de ('europa', '123456') : " . $niveau . "</br>";
 
 $niveau = $dao->getNiveauConnexion("toto", sha1("mdputilisateur"));
 echo "<p>Niveau de ('toto', 'mdputilisateur') : " . $niveau . "</br>";
-*/
+
 
 
 /*
