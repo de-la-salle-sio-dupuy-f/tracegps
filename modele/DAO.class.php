@@ -806,7 +806,19 @@ class DAO
         return $lesTraces;
     }
     
-    
+    public function terminerUneTrace($id) {
+        // préparation de la requête de recherche
+        $txt_req = "update tracegps_traces set terminee = 1";
+        $txt_req .= " where id = :idTrace";
+        
+        $req = $this->cnx->prepare($txt_req);
+        
+        $req->bindValue("idTrace", utf8_decode($id), PDO::PARAM_INT);
+        // extraction des données
+        $ok=$req->execute();
+        // fourniture de la collection
+        return $ok;
+    }
     
     
     
