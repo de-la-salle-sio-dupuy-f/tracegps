@@ -502,6 +502,11 @@ class DAO
     
     
     
+   
+    
+    
+    
+    
     
     
     
@@ -648,7 +653,43 @@ class DAO
         return true;
     
     }
-     
+    
+//     public function getLesTraces($idUtilisateur)
+//     {
+//         // préparation de la requête de recherche
+//         $txt_req = "Select id, dateDebut, dateFin, terminee, idUtilisateur";
+//         $txt_req .= " from tracegps_traces";
+//         $txt_req .= " where idUtilisateur = :idUtilisateur";
+//         $req = $this->cnx->prepare($txt_req);
+//         // liaison de la requête et de ses paramètres
+//         $req->bindValue("idUtilisateur", $idUtilisateur, PDO::PARAM_INT);
+//         // extraction des données
+//         $req->execute();
+//         $uneLigne = $req->fetch(PDO::FETCH_OBJ);
+        
+//         // construction d'une collection d'objets Utilisateur
+//         $lesTraces = array();
+//         // tant qu'une ligne est trouvée :
+//         while ($uneLigne) {
+//             // création d'un objet Point de Trace
+//             $unId = utf8_encode($uneLigne->id);
+//             $uneDateDebut = utf8_encode($uneLigne->dateDebut);
+//             $uneDateFin = utf8_encode($uneLigne->dateFin);
+//             $estTerminee = utf8_encode($uneLigne->terminee);
+//             $unIdUtilisateur = utf8_encode($uneLigne->idUtilisateur);
+            
+//             $PointsDeTrace = $unId->getLesPointsDeTrace();
+            
+//             $uneTrace = new Trace($unId, $uneDateDebut, $uneDateFin, $estTerminee, $unIdUtilisateur);
+//             $lesTraces[] = $uneTrace + $PointsDeTrace;
+//             // extrait la ligne suivante
+//             $uneLigne = $req->fetch(PDO::FETCH_OBJ);
+//         }
+//         // libère les ressources du jeu de données
+//         $req->closeCursor();
+//         // fourniture de la collection
+//         return $lesTraces;
+//     }
     
     
     
@@ -660,6 +701,43 @@ class DAO
     
     
         
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
