@@ -175,10 +175,9 @@ class Trace
             $heures = $duree / 3600;
             $reste = $duree % 3600;
             $minutes = $reste / 60;
-            $restesec = $duree % 60;
-            $secondes = $restesec;
+            $secondes = $reste % 60;
             
-            return $heures.":". $minutes.":".$secondes;
+            return sprintf("%02d",$heures) . ":" . sprintf("%02d",$minutes) . ":" . sprintf("%02d",$secondes);
         }
     }
     
@@ -283,6 +282,7 @@ class Trace
             
         }
         $this->lesPointsDeTrace[] = $nouveauPoint;
+        $this->setDateHeureFin($nouveauPoint->getDateHeure());
     }
 } // fin de la classe Trace
     

@@ -81,7 +81,7 @@ echo "<p>Nombre de traces de l'utilisateur 2 : " . $nbReponses . "</p>";
 // affichage des traces
 foreach ($lesTraces as $uneTrace)
 {   echo ($uneTrace->toString());
-echo ('<br>');
+    echo ('<br>');
 }
 
 
