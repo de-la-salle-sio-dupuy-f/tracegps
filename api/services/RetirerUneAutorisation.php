@@ -57,7 +57,7 @@ else {
             }
             else
             {   // si cet utilisateur ne possède pas d'autorisation
-                if ( $unUtilisateur->getLesUtilisateursQueJautorise() > 0 ) {
+                if ( $unUtilisateur->GetLesUtilisateursQueJautorise() > 0 ) {
                     $msg = "Erreur : l'autorisation n'était pas accordée.";
                     $code_reponse = 400;
                 }
