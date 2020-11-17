@@ -898,33 +898,16 @@ class DAO
     }
     
     public function supprimerUneAutorisation($idAutorisant, $idAutorise) {
-        $uneAutorisation = $this->getLesUtilisateursAutorises($idAutorise);
-        $unAutorisant = $this->getLesUtilisateursAutorisant($idAutorisant);
-        if ($uneAutorisation&&$unAutorisant == null) {
-            return false;
-        }
-        else {
-            
-            
-            // préparation de la requête de suppression des autorisations
-            $txt_req1 = "delete from tracegps_autorisations" ;
-            $txt_req1 .= " where idAutorisant = :idAutorisant";
-            $req1 = $this->cnx->prepare($txt_req1);
-            // liaison de la requête et de ses paramètres
-            $req1->bindValue("idAutorisant", utf8_decode($idAutorisant), PDO::PARAM_INT);
-            // exécution de la requête
-            $ok = $req1->execute();
-            
-            // préparation de la requête de suppression de l'utilisateur
-            $txt_req2 = "delete from tracegps_autorisations" ;
-            $txt_req2 .= " where idAutorise = :idAutorise";
-            $req2 = $this->cnx->prepare($txt_req2);
-            // liaison de la requête et de ses paramètres
-            $req2->bindValue("idAutorise", utf8_decode($idAutorise), PDO::PARAM_INT);
-            // exécution de la requête
-            $ok = $req2->execute();
-            return $ok;
-        }
+        $txt_req = "DELETE FROM tracegps_autorisations";
+        $txt_req .= " where idAutorisant = :idAutorisant AND idAutorise = :idAutorise";
+        $req = $this->cnx->prepare($txt_req);
+        // liaison de la requête et de ses paramètres
+        $req->bindValue(":idAutorisant", $idAutorisant, PDO::PARAM_INT);
+        $req->bindValue(":idAutorise", $idAutorise, PDO::PARAM_INT);
+        // extraction des données
+        $uneLigne = $req->execute();
+        return $uneLigne;
+    
     }
     
     
