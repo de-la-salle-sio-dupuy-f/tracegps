@@ -387,40 +387,31 @@ class DAO
         $uneLigne = $req->fetch(PDO::FETCH_OBJ);
         
         $lesUtilisateurs = array();
-        // libère les ressources du jeu de données
-        
-        
         
         // traitement de la réponse
-        if ( ! $uneLigne) {
-            return null;
-        }
-        else {
-            while ($uneLigne) {
-            // création d'un objet Utilisateur
-                $unId = utf8_encode($uneLigne->id);
-                $unPseudo = utf8_encode($uneLigne->pseudo);
-                $unMdpSha1 = utf8_encode($uneLigne->mdpSha1);
-                $uneAdrMail = utf8_encode($uneLigne->adrMail);
-                $unNumTel = utf8_encode($uneLigne->numTel);
-                $unNiveau = utf8_encode($uneLigne->niveau);
-                $uneDateCreation = utf8_encode($uneLigne->dateCreation);
-                $unNbTraces = utf8_encode($uneLigne->nbTraces);
-                $uneDateDerniereTrace = utf8_encode($uneLigne->dateDerniereTrace);
-            
+        while ($uneLigne) {
+        // création d'un objet Utilisateur
+            $unId = utf8_encode($uneLigne->id);
+            $unPseudo = utf8_encode($uneLigne->pseudo);
+            $unMdpSha1 = utf8_encode($uneLigne->mdpSha1);
+            $uneAdrMail = utf8_encode($uneLigne->adrMail);
+            $unNumTel = utf8_encode($uneLigne->numTel);
+            $unNiveau = utf8_encode($uneLigne->niveau);
+            $uneDateCreation = utf8_encode($uneLigne->dateCreation);
+            $unNbTraces = utf8_encode($uneLigne->nbTraces);
+            $uneDateDerniereTrace = utf8_encode($uneLigne->dateDerniereTrace);
+        
             $unUtilisateur = new Utilisateur($unId, $unPseudo, $unMdpSha1, $uneAdrMail, $unNumTel, $unNiveau, $uneDateCreation, $unNbTraces, $uneDateDerniereTrace);
-            
             
             $lesUtilisateurs[] = $unUtilisateur;
             
             $uneLigne = $req->fetch(PDO::FETCH_OBJ);
-            }
-            
-            $req->closeCursor();
-            
-            return $lesUtilisateurs;
-            
         }
+        
+        // libère les ressources du jeu de données
+        $req->closeCursor();
+        
+        return $lesUtilisateurs;
     }
     
     
