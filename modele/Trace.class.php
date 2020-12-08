@@ -269,10 +269,8 @@ class Trace
             
             $this->distCumPointAv = $dernierPoint->getDistanceCumulee();
             $this->tempsCumPointAv = $dernierPoint->getTempsCumule();
-            $this->vitessePointAv = $dernierPoint->getVitesse();
             
             $duree = strtotime($nouveauPoint->getDateHeure()) - strtotime($dernierPoint->getDateHeure());
-            
             
             $diffDist = Point::getDistance($dernierPoint, $nouveauPoint);
             

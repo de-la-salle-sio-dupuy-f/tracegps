@@ -589,7 +589,7 @@ class DAO
             
             $req = $this->cnx->prepare($txt_req);
             
-            $req->bindValue("dateDebut", utf8_decode($unPointDeTrace->getDateHeure()), PDO::PARAM_INT);
+            $req->bindValue("dateDebut", utf8_decode($unPointDeTrace->getDateHeure()), PDO::PARAM_STR);
             $req->bindValue("idTrace", utf8_decode($unPointDeTrace->getIdTrace()), PDO::PARAM_INT);
             
             $ok = $req->execute();
